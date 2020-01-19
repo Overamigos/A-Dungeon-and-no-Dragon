@@ -19,6 +19,11 @@ config/name="Kinematic Collision"
 run/main_scene="res://colworld.tscn"
 config/icon="res://icon.png"
 
+[display]
+
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
+
 [gdnative]
 
 singletons=[  ]
