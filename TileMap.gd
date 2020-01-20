@@ -11,7 +11,7 @@ func _ready():
 	var i = 0
 	var j = 0
 	var rng = RandomNumberGenerator.new()
-	var numberOfSpaces = 1000
+	var numberOfSpaces = 100
 	
 	while numberOfSpaces >= 0:
 		if(get_cell(i,j) != -1):
