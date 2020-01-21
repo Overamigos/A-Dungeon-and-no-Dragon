@@ -269,10 +269,13 @@ tracks/0/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=17]
-extents = Vector2( 6.50302, 6.52432 )
+extents = Vector2( 10, 4 )
 
 [node name="player" type="KinematicBody2D"]
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_horizontal_guides_": [ -2.69101, -12.5744 ]
+}
 
 [node name="IdleSprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
@@ -291,11 +294,10 @@ anims/IdleUpLeft = SubResource( 7 )
 anims/IdleUpRight = SubResource( 8 )
 
 [node name="RunSprite" type="Sprite" parent="."]
-visible = false
 texture = ExtResource( 3 )
 vframes = 8
 hframes = 8
-frame = 56
+frame = 50
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="RunSprite"]
 anims/RunDown = SubResource( 9 )
@@ -308,5 +310,5 @@ anims/RunUpLeft = SubResource( 15 )
 anims/RunUpRight = SubResource( 16 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0.495251, 9.46039 )
+position = Vector2( 0, 12 )
 shape = SubResource( 17 )

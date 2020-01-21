@@ -1,29 +1,15 @@
 extends KinematicBody2D
-
-# This is a demo showing how KinematicBody2D
-# move_and_slide works.
-
-# Member variables
-const MOTION_SPEED = 200 # Pixels/second
-
+const MOTION_SPEED = 200; # Pixels/second
+var lastMotion = Vector2(0,0);
 
 func _physics_process(_delta):
-	var motion = Vector2()
-	
-	if Input.is_action_pressed("move_up"):
-		motion += Vector2(0, -1)
-	if Input.is_action_pressed("move_bottom"):
-		motion += Vector2(0, 1)
-	if Input.is_action_pressed("move_left"):
-		motion += Vector2(-1, 0)
-	if Input.is_action_pressed("move_right"):
-		motion += Vector2(1, 0)
-	
+	var motion = Vector2(
+		Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
+		Input.get_action_strength("move_bottom") - Input.get_action_strength("move_up")
+	);	
+	motion = motion.normalized()
 	decideAnimation(motion);
-	
-	motion = motion.normalized() * MOTION_SPEED
-
-	move_and_slide(motion)
+	move_and_slide(motion * MOTION_SPEED);
 
 func decideAnimation(motion):
 	if motion == Vector2(0, 0):
@@ -35,20 +21,24 @@ func decideAnimation(motion):
 	else:
 		$IdleSprite.hide();
 		$RunSprite.show();
-	
-	if motion == Vector2(1, 0):
-		$RunSprite/AnimationPlayer.play("RunRight");
-	if motion == Vector2(-1, 0):
-		$RunSprite/AnimationPlayer.play("RunLeft");
-	if motion == Vector2(0, 1):
-		$RunSprite/AnimationPlayer.play("RunDown");
-	if motion == Vector2(0, -1):
-		$RunSprite/AnimationPlayer.play("RunUp");
-	if motion == Vector2(1, 1):
-		$RunSprite/AnimationPlayer.play("RunDownRight");
-	if motion == Vector2(-1, 1):
-		$RunSprite/AnimationPlayer.play("RunDownLeft");
-	if motion == Vector2(1, -1):
-		$RunSprite/AnimationPlayer.play("RunUpRight");
-	if motion == Vector2(-1, -1):
-		$RunSprite/AnimationPlayer.play("RunUpLeft");
+		var vertical = motion[0];
+		var horizontal = motion[1];
+		if abs(vertical) > abs(horizontal):
+			if vertical > 0:
+				$RunSprite/AnimationPlayer.play("RunRight");
+			else:
+				$RunSprite/AnimationPlayer.play("RunLeft");
+		if abs(vertical) < abs(horizontal):
+			if horizontal > 0:
+				$RunSprite/AnimationPlayer.play("RunDown");
+			else:
+				$RunSprite/AnimationPlayer.play("RunUp");
+		else:
+			if vertical < 0 && $RunSprite/AnimationPlayer.current_animation == 'RunRight':
+				$RunSprite/AnimationPlayer.play("RunLeft");
+			elif vertical > 0 && $RunSprite/AnimationPlayer.current_animation == 'RunLeft':
+				$RunSprite/AnimationPlayer.play("RunRight");
+			elif horizontal < 0 && $RunSprite/AnimationPlayer.current_animation == 'RunDown':
+				$RunSprite/AnimationPlayer.play("RunUp");
+			elif horizontal > 0 && $RunSprite/AnimationPlayer.current_animation == 'RunUp':
+				$RunSprite/AnimationPlayer.play("RunDown");
