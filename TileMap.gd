@@ -14,8 +14,9 @@ func _ready():
 	var numberOfSpaces = 100
 	var prevDir = 0;
 	while numberOfSpaces >= 0:
-		if(get_cell(i,j) != -1):
-			set_cell(i,j,-1)
+		if(get_cell(i,j) == 0):
+			var k = rng.randi_range(1,3)
+			set_cell(i,j,k)
 			numberOfSpaces-=1
 		var nextDir = rng.randi_range(0,3);
 		if rng.randi_range(0,100) < 5:
