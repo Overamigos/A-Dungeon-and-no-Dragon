@@ -1,15 +1,28 @@
 extends KinematicBody2D
 
-var MOTION_SPEED = 200; 	# Pixels/second
-var dashingSpeed = 800; 	#Pixels/second
-var baseSpeed = 200			#Pixels/second
+var dashingSpeed = 800; 			#Pixels/second
+var baseSpeed = 200					#Pixels/second
+var MOTION_SPEED = baseSpeed; 		# Pixels/second
 
-var dashMaxCD = 1;					#Seconds
+var dashMaxCD = 0.5;					#Seconds
 var dashingMaxDuration = 0.15;		#Seconds
 var dashCD = 0;						#Seconds
 var dashingDuration = 0;			#Seconds
 var isDashing = false;				#If entity is dashing
 var dashingMotion = Vector2(0,0);	#Direction vector
+
+var maxHp = 2;
+var hp = maxHp;
+
+func _process(delta):
+	get_node("Camera2D/healthText").text = "health: %d" % hp;
+	if hp <=0:
+		print('dead');
+		var target = get_node('../..')
+		var source = get_node("Camera2D")
+		source.current = false;
+		queue_free()
+	pass
 
 func _physics_process(delta):
 	var motion = Vector2(
@@ -21,6 +34,7 @@ func _physics_process(delta):
 		dashCD = dashMaxCD
 		MOTION_SPEED = dashingSpeed;
 		dashingDuration = dashingMaxDuration;
+		get_node("Hitbox/CollisionShape2D").disabled = true;
 		isDashing = true;
 		dashingMotion = Vector2(
 			Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
@@ -43,6 +57,7 @@ func _physics_process(delta):
 		motion = dashingMotion;
 		dashingDuration -= delta
 		if dashingDuration < 0:
+			get_node("Hitbox/CollisionShape2D").disabled = false;
 			dashingDuration = 0
 			isDashing = false;
 			dashCD = dashMaxCD;
@@ -59,6 +74,7 @@ func _physics_process(delta):
 	MOTION_SPEED = baseSpeed
 
 func decideAnimation(motion):
+	
 	if motion == Vector2(0, 0):
 		var oldAnimation = $RunSprite/AnimationPlayer.current_animation;
 		var newAnimation = oldAnimation.replace('Run','Idle');
@@ -90,3 +106,9 @@ func decideAnimation(motion):
 			elif horizontal > 0 && $RunSprite/AnimationPlayer.current_animation == 'RunUp':
 				$RunSprite/AnimationPlayer.play("RunDown");
 	pass
+
+func _on_Area2D_area_entered(area):
+	if(area.collision_mask == 2):
+		print('hit');
+		hp-=1;
+	pass # Replace with function body.

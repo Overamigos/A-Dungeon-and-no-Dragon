@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://player.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/PlayerIdle.png" type="Texture" id=2]
@@ -269,7 +269,10 @@ tracks/0/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=17]
-extents = Vector2( 10, 4 )
+extents = Vector2( 8.94965, 3.5765 )
+
+[sub_resource type="RectangleShape2D" id=18]
+extents = Vector2( 8.85991, 13.4101 )
 
 [node name="player" type="KinematicBody2D"]
 script = ExtResource( 1 )
@@ -309,6 +312,13 @@ anims/RunUp = SubResource( 14 )
 anims/RunUpLeft = SubResource( 15 )
 anims/RunUpRight = SubResource( 16 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 12 )
+[node name="Feet" type="CollisionShape2D" parent="."]
+position = Vector2( -0.448723, 12.2692 )
 shape = SubResource( 17 )
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2( -0.448723, 2.44872 )
+shape = SubResource( 18 )
+[connection signal="area_entered" from="Hitbox" to="." method="_on_Area2D_area_entered"]

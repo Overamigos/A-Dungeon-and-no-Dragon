@@ -18,7 +18,7 @@ func _ready():
 			set_cell(i,j,-1)
 			numberOfSpaces-=1
 		var nextDir = rng.randi_range(0,3);
-		if rng.randi_range(0,100) < 25:
+		if rng.randi_range(0,100) < 5:
 			nextDir = prevDir;
 		prevDir = nextDir;
 		match(nextDir):
