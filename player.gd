@@ -1,15 +1,62 @@
 extends KinematicBody2D
-const MOTION_SPEED = 200; # Pixels/second
-var lastMotion = Vector2(0,0);
 
-func _physics_process(_delta):
+var MOTION_SPEED = 200; 	# Pixels/second
+var dashingSpeed = 800; 	#Pixels/second
+var baseSpeed = 200			#Pixels/second
+
+var dashMaxCD = 1;					#Seconds
+var dashingMaxDuration = 0.15;		#Seconds
+var dashCD = 0;						#Seconds
+var dashingDuration = 0;			#Seconds
+var isDashing = false;				#If entity is dashing
+var dashingMotion = Vector2(0,0);	#Direction vector
+
+func _physics_process(delta):
 	var motion = Vector2(
 		Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
 		Input.get_action_strength("move_bottom") - Input.get_action_strength("move_up")
-	);	
+	);
+
+	if Input.is_action_just_pressed("dash") && dashCD == 0 && !isDashing:
+		dashCD = dashMaxCD
+		MOTION_SPEED = dashingSpeed;
+		dashingDuration = dashingMaxDuration;
+		isDashing = true;
+		dashingMotion = Vector2(
+			Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
+			Input.get_action_strength("move_bottom") - Input.get_action_strength("move_up")
+		);
+		if dashingMotion == Vector2(0,0):
+			decideAnimation(motion);
+			match($IdleSprite/AnimationPlayer.current_animation):
+				"IdleDown":
+					dashingMotion = Vector2(0,1);
+				"IdleUp":
+					dashingMotion = Vector2(0,-1);
+				"IdleRight":
+					dashingMotion = Vector2(1,0);
+				"IdleLeft":
+					dashingMotion = Vector2(-1,0);
+
+	if isDashing:
+		MOTION_SPEED = dashingSpeed
+		motion = dashingMotion;
+		dashingDuration -= delta
+		if dashingDuration < 0:
+			dashingDuration = 0
+			isDashing = false;
+			dashCD = dashMaxCD;
+
 	motion = motion.normalized()
 	decideAnimation(motion);
 	move_and_slide(motion * MOTION_SPEED);
+
+	if dashCD > 0:
+		dashCD -= delta;
+	elif dashCD <0:
+		dashCD = 0
+
+	MOTION_SPEED = baseSpeed
 
 func decideAnimation(motion):
 	if motion == Vector2(0, 0):
@@ -42,3 +89,4 @@ func decideAnimation(motion):
 				$RunSprite/AnimationPlayer.play("RunUp");
 			elif horizontal > 0 && $RunSprite/AnimationPlayer.current_animation == 'RunUp':
 				$RunSprite/AnimationPlayer.play("RunDown");
+	pass
