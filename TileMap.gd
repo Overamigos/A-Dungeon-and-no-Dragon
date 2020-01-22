@@ -12,12 +12,15 @@ func _ready():
 	var j = 0
 	var rng = RandomNumberGenerator.new()
 	var numberOfSpaces = 100
-	
+	var prevDir = 0;
 	while numberOfSpaces >= 0:
 		if(get_cell(i,j) != -1):
 			set_cell(i,j,-1)
 			numberOfSpaces-=1
-		var nextDir = rng.randi_range(0,3)
+		var nextDir = rng.randi_range(0,3);
+		if rng.randi_range(0,100) < 5:
+			nextDir = prevDir;
+		prevDir = nextDir;
 		match(nextDir):
 			0:
 				i-=1
