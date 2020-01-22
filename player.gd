@@ -1,15 +1,21 @@
 extends KinematicBody2D
 
-var dashingSpeed = 800; 			#Pixels/second
-var baseSpeed = 200					#Pixels/second
+var dashingSpeed = 600; 			#Pixels/second
+var baseSpeed = 200;				#Pixels/second
 var MOTION_SPEED = baseSpeed; 		# Pixels/second
 
-var dashMaxCD = 0.5;					#Seconds
-var dashingMaxDuration = 0.15;		#Seconds
+var dashMaxCD = 0.5;				#Seconds
+var dashingMaxDuration = 0.2;		#Seconds
 var dashCD = 0;						#Seconds
 var dashingDuration = 0;			#Seconds
 var isDashing = false;				#If entity is dashing
 var dashingMotion = Vector2(0,0);	#Direction vector
+
+var facing = "D"					#Initial facing direction
+
+var isAttacking = false;			#If entity is attacking
+var attackMaxCD = 0.1;				#Seconds
+var attackCD = 0;					#Seconds
 
 var maxHp = 2;
 var hp = maxHp;
@@ -18,10 +24,9 @@ func _process(delta):
 	get_node("Camera2D/healthText").text = "health: %d" % hp;
 	if hp <=0:
 		print('dead');
-		var target = get_node('../..')
-		var source = get_node("Camera2D")
+		var source = get_node("Camera2D");
 		source.current = false;
-		queue_free()
+		queue_free();
 	pass
 
 func _physics_process(delta):
@@ -29,82 +34,89 @@ func _physics_process(delta):
 		Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
 		Input.get_action_strength("move_bottom") - Input.get_action_strength("move_up")
 	);
+	
+	if Input.is_action_just_pressed("Attack") && attackCD:
+		print('attack')
+		isAttacking = true
 
 	if Input.is_action_just_pressed("dash") && dashCD == 0 && !isDashing:
-		dashCD = dashMaxCD
-		MOTION_SPEED = dashingSpeed;
+		isDashing = true;
 		dashingDuration = dashingMaxDuration;
 		get_node("Hitbox/CollisionShape2D").disabled = true;
-		isDashing = true;
 		dashingMotion = Vector2(
 			Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
 			Input.get_action_strength("move_bottom") - Input.get_action_strength("move_up")
 		);
 		if dashingMotion == Vector2(0,0):
 			decideAnimation(motion);
-			match($IdleSprite/AnimationPlayer.current_animation):
-				"IdleDown":
+			match(facing):
+				"D":
 					dashingMotion = Vector2(0,1);
-				"IdleUp":
+				"U":
 					dashingMotion = Vector2(0,-1);
-				"IdleRight":
+				"R":
 					dashingMotion = Vector2(1,0);
-				"IdleLeft":
+				"L":
 					dashingMotion = Vector2(-1,0);
 
 	if isDashing:
-		MOTION_SPEED = dashingSpeed
+		MOTION_SPEED = dashingSpeed;
 		motion = dashingMotion;
-		dashingDuration -= delta
+		dashingDuration -= delta;
 		if dashingDuration < 0:
 			get_node("Hitbox/CollisionShape2D").disabled = false;
-			dashingDuration = 0
+			dashingDuration = 0;
 			isDashing = false;
 			dashCD = dashMaxCD;
 
-	motion = motion.normalized()
+	motion = motion.normalized();
 	decideAnimation(motion);
 	move_and_slide(motion * MOTION_SPEED);
 
 	if dashCD > 0:
 		dashCD -= delta;
 	elif dashCD <0:
-		dashCD = 0
+		dashCD = 0;
 
-	MOTION_SPEED = baseSpeed
+	MOTION_SPEED = baseSpeed;
 
 func decideAnimation(motion):
+	if $Sprite/AnimationPlayer.is_playing():
+		var split = $Sprite/AnimationPlayer.current_animation.rsplit ('_',true,1)
+		facing = split[-1]
+	var action;
 	
 	if motion == Vector2(0, 0):
-		var oldAnimation = $RunSprite/AnimationPlayer.current_animation;
-		var newAnimation = oldAnimation.replace('Run','Idle');
-		$RunSprite.hide();
-		$IdleSprite.show();
-		$IdleSprite/AnimationPlayer.play(newAnimation);
+		action = 'Idle';
 	else:
-		$IdleSprite.hide();
-		$RunSprite.show();
+		action = 'Run'
 		var vertical = motion[0];
 		var horizontal = motion[1];
 		if abs(vertical) > abs(horizontal):
 			if vertical > 0:
-				$RunSprite/AnimationPlayer.play("RunRight");
+				facing = "R"
 			else:
-				$RunSprite/AnimationPlayer.play("RunLeft");
+				facing = "L"
 		if abs(vertical) < abs(horizontal):
 			if horizontal > 0:
-				$RunSprite/AnimationPlayer.play("RunDown");
+				facing = "D"
 			else:
-				$RunSprite/AnimationPlayer.play("RunUp");
+				facing = "U"
 		else:
-			if vertical < 0 && $RunSprite/AnimationPlayer.current_animation == 'RunRight':
-				$RunSprite/AnimationPlayer.play("RunLeft");
-			elif vertical > 0 && $RunSprite/AnimationPlayer.current_animation == 'RunLeft':
-				$RunSprite/AnimationPlayer.play("RunRight");
-			elif horizontal < 0 && $RunSprite/AnimationPlayer.current_animation == 'RunDown':
-				$RunSprite/AnimationPlayer.play("RunUp");
-			elif horizontal > 0 && $RunSprite/AnimationPlayer.current_animation == 'RunUp':
-				$RunSprite/AnimationPlayer.play("RunDown");
+			if vertical < 0 && facing == "R":
+				facing = "L"
+			elif vertical > 0 && facing == "L":
+				facing = "R"
+			elif horizontal < 0 && facing == "U":
+				facing = "U"
+			elif horizontal > 0 && facing == "D":
+				facing = "D"
+
+	if isAttacking:
+		action = "Attack"
+		#$Sprite/AnimationPlayer.
+		
+	$Sprite/AnimationPlayer.play(action+"_"+facing)
 	pass
 
 func _on_Area2D_area_entered(area):
