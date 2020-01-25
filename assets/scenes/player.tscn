@@ -247,12 +247,13 @@ tracks/0/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=17]
-extents = Vector2( 7.83028, 3.17252 )
+extents = Vector2( 6.97446, 3.17252 )
 
 [sub_resource type="RectangleShape2D" id=18]
-extents = Vector2( 7.69089, 11.2528 )
+extents = Vector2( 5.87692, 10.2489 )
 
 [node name="player" type="KinematicBody2D"]
+collision_mask = 7
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_horizontal_guides_": [ -2.69101, -12.5744 ]
@@ -281,7 +282,7 @@ visible = false
 texture = ExtResource( 5 )
 vframes = 8
 hframes = 8
-frame = 55
+frame = 35
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Attack_D = SubResource( 1 )
@@ -302,13 +303,13 @@ anims/Run_R = SubResource( 15 )
 anims/Run_U = SubResource( 16 )
 
 [node name="Feet" type="CollisionShape2D" parent="."]
-position = Vector2( -0.309729, 12.8063 )
+position = Vector2( 0.242349, 12.8063 )
 shape = SubResource( 17 )
 
 [node name="Hitbox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2( -0.684399, 1.09572 )
+position = Vector2( 0.603786, 0.911695 )
 shape = SubResource( 18 )
 
 [node name="DashGhostTimer" type="Timer" parent="."]

@@ -7,7 +7,7 @@ var isRunning = false
 var isIdle = true
 
 var dashMaxCD = 0.5;				#Seconds
-var dashingMaxDuration = 0.25;		#Seconds
+var dashingMaxDuration = 0.2;		#Seconds
 var dashCD = 0;						#Seconds
 var dashingDuration = 0;			#Seconds
 var dashingMotion = Vector2(0,0);	#Direction vector
@@ -20,7 +20,7 @@ var isAttacking = false
 
 var motion = Vector2(0,0)			#Direcion player is moving
 
-var maxHp = 2;
+var maxHp = 5;
 var hp = maxHp;
 var facing = "D"					#Initial facing direction
 
@@ -49,6 +49,7 @@ func checkDeath():
 	if hp <=0:
 		var source = get_node("Camera2D");
 		source.current = false;
+		get_parent().queue_free()
 		queue_free();
 	else:
 		return false
@@ -65,7 +66,6 @@ func handleInputs():
 	if Input.is_action_just_pressed("dash") && dashCD <= 0 && !isDashing:
 		isDashing = true
 		dashingDuration = dashingMaxDuration;
-		get_node("Hitbox/CollisionShape2D").disabled = true;
 		dashingMotion = Vector2(
 			Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
 			Input.get_action_strength("move_bottom") - Input.get_action_strength("move_up")
@@ -88,12 +88,15 @@ func handleInputs():
 
 
 func dash(delta):
+	$Hitbox/CollisionShape2D.disabled = true;
+	set_collision_mask_bit(2,false)
 	MOTION_SPEED = dashingSpeed;
 	motion = dashingMotion;
 	dashingDuration -= delta;
 	motion = motion.normalized();
 	if dashingDuration < 0:
-		get_node("Hitbox/CollisionShape2D").disabled = false;
+		set_collision_mask_bit(2,true)
+		$Hitbox/CollisionShape2D.disabled = false;
 		dashingDuration = 0;
 		isDashing = false
 		dashCD = dashMaxCD;
@@ -110,15 +113,15 @@ func attack():
 	if !$Weapon:
 		var sword = preload("res://assets/scenes/Weapon.tscn").instance()
 		match facing:
-			'U':
-				sword.rotation_degrees = 0
-			'D':
-				sword.rotation_degrees = 180
-			'R':
-				sword.rotation_degrees = 90
 			'L':
+				sword.rotation_degrees = 0
+			'R':
+				sword.rotation_degrees = 180
+			'U':
+				sword.rotation_degrees = 90
+			'D':
 				sword.rotation_degrees = 270
-		sword.position += Vector2(0,-25).rotated(sword.rotation)
+		sword.position += Vector2(-25,0).rotated(sword.rotation)
 		add_child(sword)
 	pass
 
