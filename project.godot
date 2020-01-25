@@ -16,7 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Kinematic Collision"
-run/main_scene="res://assets/scenes/colworld.tscn"
+run/main_scene="res://assets/scenes/World.tscn"
 config/icon="res://icon.png"
 
 [display]

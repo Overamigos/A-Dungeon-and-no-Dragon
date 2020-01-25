@@ -265,7 +265,6 @@ vframes = 8
 hframes = 8
 
 [node name="IdleSprite" type="Sprite" parent="."]
-visible = false
 texture = ExtResource( 3 )
 vframes = 8
 hframes = 8
@@ -278,6 +277,7 @@ vframes = 8
 frame = 5
 
 [node name="AttackSprite" type="Sprite" parent="."]
+visible = false
 texture = ExtResource( 5 )
 vframes = 8
 hframes = 8
