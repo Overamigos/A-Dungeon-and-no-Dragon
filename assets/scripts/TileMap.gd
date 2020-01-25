@@ -4,17 +4,17 @@ extends TileMap
 # Called when the node enters the scene tree for the first time.
 func _ready():
 
-	for i in range(-20,20):
-		for j in range(-20,20):
+	for i in range(-30,30):
+		for j in range(-30,30):
 			set_cell(i,j,0)
 	
 	var i = 0
 	var j = 0
 	var rng = RandomNumberGenerator.new()
-	var numberOfSpaces = 30
+	var numberOfSpaces = 300
 	var prevDir = 0;
 	while numberOfSpaces >= 0:
-		if(get_cell(i,j) == 0):
+		if(!get_cell(i,j) in [1,2,3]):
 			var k = rng.randi_range(1,3)
 			set_cell(i,j,k)
 			numberOfSpaces-=1

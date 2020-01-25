@@ -107,6 +107,19 @@ func run(delta):
 
 
 func attack():
+	if !$Weapon:
+		var sword = preload("res://assets/scenes/Weapon.tscn").instance()
+		match facing:
+			'U':
+				sword.rotation_degrees = 0
+			'D':
+				sword.rotation_degrees = 180
+			'R':
+				sword.rotation_degrees = 90
+			'L':
+				sword.rotation_degrees = 270
+		sword.position += Vector2(0,-25).rotated(sword.rotation)
+		add_child(sword)
 	pass
 
 
@@ -149,9 +162,6 @@ func decideAnimation(motion):
 	$DashSprite.visible = false
 	$AttackSprite.visible = false
 	var action;
-	if isAttacking:
-		action = "Attack"
-		$AttackSprite.visible = true
 	if isRunning:
 		action = "Run"
 		$RunSprite.visible = true
