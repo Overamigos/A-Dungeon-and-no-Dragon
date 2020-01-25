@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://assets/tileset/brick_wall.tres" type="TileSet" id=1]
-[ext_resource path="res://TileMap.gd" type="Script" id=2]
-[ext_resource path="res://player.tscn" type="PackedScene" id=3]
-[ext_resource path="res://enemy.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/scripts/TileMap.gd" type="Script" id=2]
+[ext_resource path="res://assets/scenes/player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/scenes/enemy.tscn" type="PackedScene" id=4]
 
 [node name="colworld" type="Node2D"]
 
