@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/template.png-2b76cab54fc1d3baba892ba922f885b1.stex"
+path="res://.import/stone_brick_walls_f01.png-7f6cdadc08566c6c4f19a8c22ba1e58e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/template_obstacle/template.png"
-dest_files=[ "res://.import/template.png-2b76cab54fc1d3baba892ba922f885b1.stex" ]
+source_file="res://assets/sprites/template_obstacle/stone_brick_walls_f01.png"
+dest_files=[ "res://.import/stone_brick_walls_f01.png-7f6cdadc08566c6c4f19a8c22ba1e58e.stex" ]
 
 [params]
 

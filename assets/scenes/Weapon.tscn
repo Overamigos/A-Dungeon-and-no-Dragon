@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/sprites/enemies/concept2_attack.png" type="Texture" id=1]
+[ext_resource path="res://assets/scripts/Weapon.gd" type="Script" id=2]
+
+[sub_resource type="Animation" id=1]
+resource_name = "attack"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0, 7 ]
+}
+
+[node name="Weapon" type="Sprite"]
+texture = ExtResource( 1 )
+hframes = 8
+frame = 3
+script = ExtResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+playback_speed = 3.0
+anims/attack = SubResource( 1 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+position = Vector2( -0.485966, 0.0809937 )
+build_mode = 1
+polygon = PoolVector2Array( 7.99547, -7.77936, -8.28448, -4.62057, -19.3808, 2.102, -6.74558, 8.50059, 13.0172, 8.66258, -5.28767, 1.29206, 8.40045, -6.80742 )
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
