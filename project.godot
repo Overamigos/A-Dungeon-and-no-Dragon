@@ -15,7 +15,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Kinematic Collision"
+config/name="A Dungeon and No Dragon"
 run/main_scene="res://assets/scenes/World.tscn"
 config/icon="res://icon.png"
 
