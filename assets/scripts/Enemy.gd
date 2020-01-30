@@ -28,8 +28,4 @@ func _process(delta):
 		else:
 			move_and_slide(Vector2(0,0))
 	
-	#if(get_node("../../Player")):
-	#	var distance = (get_node("../../Player").global_position - global_position).normalized()
-
-	#	move_and_slide(speed*distance)
 	pass
