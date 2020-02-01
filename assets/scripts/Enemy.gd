@@ -23,13 +23,9 @@ func _process(delta):
 	if points.size() > 1:
 		var distance = points[1] - enemy_position
 		var direction = distance.normalized()
-		if points.size() > 2:
+		if points.size() > 1:
 			move_and_slide(speed*direction)
 		else:
 			move_and_slide(Vector2(0,0))
 	
-	#if(get_node("../../Player")):
-	#	var distance = (get_node("../../Player").global_position - global_position).normalized()
-
-	#	move_and_slide(speed*distance)
 	pass

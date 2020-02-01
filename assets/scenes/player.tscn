@@ -1,11 +1,10 @@
 [gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://assets/scripts/Player.gd" type="Script" id=1]
-[ext_resource path="res://assets/sprites/RunSheet.png" type="Texture" id=2]
-[ext_resource path="res://assets/sprites/IdleSheet.png" type="Texture" id=3]
+[ext_resource path="res://assets/sprites/player/PlayerRunning-Sheet.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/player/PlayerIdle4sides-Sheet.png" type="Texture" id=3]
 [ext_resource path="res://assets/sprites/DashSheet.png" type="Texture" id=4]
 [ext_resource path="res://assets/sprites/AttackSheet.png" type="Texture" id=5]
-
 
 [sub_resource type="Animation" id=1]
 resource_name = "Attack_D"
@@ -129,6 +128,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=9]
+length = 0.7
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("IdleSprite:frame")
@@ -137,13 +137,14 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
+"times": PoolRealArray( 0, 0.7 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 32, 39 ]
+"values": [ 6, 11 ]
 }
 
 [sub_resource type="Animation" id=10]
+length = 0.7
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("IdleSprite:frame")
@@ -152,13 +153,14 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
+"times": PoolRealArray( 0, 0.7 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 48, 55 ]
+"values": [ 12, 17 ]
 }
 
 [sub_resource type="Animation" id=11]
+length = 0.7
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("IdleSprite:frame")
@@ -167,13 +169,14 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
+"times": PoolRealArray( 0, 0.7 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 16, 23 ]
+"values": [ 18, 23 ]
 }
 
 [sub_resource type="Animation" id=12]
+length = 0.7
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("IdleSprite:frame")
@@ -182,13 +185,14 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
+"times": PoolRealArray( 0, 0.7 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 0, 7 ]
+"values": [ 0, 5 ]
 }
 
 [sub_resource type="Animation" id=13]
+length = 0.8
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("RunSprite:frame")
@@ -197,13 +201,14 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
+"times": PoolRealArray( 0, 0.8 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 32, 39 ]
+"values": [ 12, 23 ]
 }
 
 [sub_resource type="Animation" id=14]
+length = 0.8
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("RunSprite:frame")
@@ -212,13 +217,14 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
+"times": PoolRealArray( 0, 0.8 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 48, 55 ]
+"values": [ 24, 35 ]
 }
 
 [sub_resource type="Animation" id=15]
+length = 0.8
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("RunSprite:frame")
@@ -227,13 +233,14 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
+"times": PoolRealArray( 0, 0.8 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 16, 23 ]
+"values": [ 36, 47 ]
 }
 
 [sub_resource type="Animation" id=16]
+length = 0.8
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("RunSprite:frame")
@@ -242,10 +249,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
+"times": PoolRealArray( 0, 0.8 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 0, 7 ]
+"values": [ 0, 11 ]
 }
 
 [sub_resource type="RectangleShape2D" id=17]
@@ -262,15 +269,18 @@ __meta__ = {
 }
 
 [node name="RunSprite" type="Sprite" parent="."]
+visible = false
 texture = ExtResource( 2 )
-vframes = 8
-hframes = 8
+vframes = 4
+hframes = 12
+frame = 28
 
 [node name="IdleSprite" type="Sprite" parent="."]
+visible = false
 texture = ExtResource( 3 )
 vframes = 8
-hframes = 8
-frame = 33
+hframes = 6
+frame = 18
 
 [node name="DashSprite" type="Sprite" parent="."]
 texture = ExtResource( 4 )
@@ -278,6 +288,7 @@ vframes = 8
 frame = 5
 
 [node name="AttackSprite" type="Sprite" parent="."]
+visible = false
 texture = ExtResource( 5 )
 vframes = 8
 hframes = 8
@@ -302,12 +313,15 @@ anims/Run_R = SubResource( 15 )
 anims/Run_U = SubResource( 16 )
 
 [node name="Feet" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2( 0.242349, 12.8063 )
 shape = SubResource( 17 )
 
 [node name="Hitbox" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+visible = false
 position = Vector2( 0.603786, 0.911695 )
 shape = SubResource( 18 )
 
