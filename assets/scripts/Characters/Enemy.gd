@@ -1,31 +1,29 @@
-extends KinematicBody2D
+extends "res://assets/scripts/Characters/Character.gd"
 
-# Declare member variables here. Examples:
-# var a = 2
-var speed = 60
-var hp = 1
 var target
 var points = []
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 
 
-func _process(delta):
-	if hp <=0:
-		queue_free()
+func _physics_process(delta):
+	checkDeath()	
+	chooseDirection()
+	decideFacingDirection()
+	run(delta)
 	
+	pass
+
+func chooseDirection():
 	var enemy_position = get_global_position()
-	
+
 	points = get_node("../../Navigation2D").get_simple_path(enemy_position, get_node("../../Player").global_position, false)
 	
 	if points.size() > 1:
 		var distance = points[1] - enemy_position
-		var direction = distance.normalized()
-		if points.size() > 1:
-			move_and_slide(speed*direction)
-		else:
-			move_and_slide(Vector2(0,0))
-	
-	pass
+		motion = distance.normalized()
+		isRunning = true
+		if points.size() < 1:
+			isRunning = false
+			motion = Vector2(0,0)

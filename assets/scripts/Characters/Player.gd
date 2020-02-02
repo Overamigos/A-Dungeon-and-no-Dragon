@@ -1,10 +1,6 @@
-extends KinematicBody2D
+extends "res://assets/scripts/Characters/Character.gd"
 
 var dashingSpeed = 800; 			#Pixels/second
-var baseSpeed = 200;				#Pixels/second
-var MOTION_SPEED = baseSpeed; 		# Pixels/second
-var isRunning = false
-var isIdle = true
 
 var dashMaxCD = 0.5;				#Seconds
 var dashingMaxDuration = 0.2;		#Seconds
@@ -17,12 +13,6 @@ var isDashing = false
 var attackMaxCD = 0.1;				#Seconds
 var attackCD = 0.1;					#Seconds
 var isAttacking = false
-
-var motion = Vector2(0,0)			#Direcion player is moving
-
-var maxHp = 5;
-var hp = maxHp;
-var facing = "D"					#Initial facing direction
 
 ### UPDATE FUNCTION ###
 func _physics_process(delta):
@@ -49,7 +39,6 @@ func checkDeath():
 	if hp <=0:
 		var source = get_node("Camera2D");
 		source.current = false;
-		get_parent().queue_free()
 		queue_free();
 	else:
 		return false
@@ -104,11 +93,6 @@ func dash(delta):
 	move_and_slide(motion * dashingSpeed);
 
 
-func run(delta):
-	move_and_slide(motion * MOTION_SPEED);
-	pass
-
-
 func attack():
 	if !$Weapon:
 		var sword = preload("res://assets/scenes/Powers/Weapon.tscn").instance()
@@ -129,34 +113,6 @@ func attack():
 func handleCoolDowns(delta):
 	dashCD -= delta
 	attackCD -= delta
-
-
-func decideFacingDirection():
-	if $AnimationPlayer.is_playing():
-		var split = $AnimationPlayer.current_animation.rsplit ('_',true,1)
-		facing = split[-1]
-	var vertical = motion[0];
-	var horizontal = motion[1];
-	if abs(vertical) > abs(horizontal):
-		if vertical > 0:
-			facing = "R"
-		else:
-			facing = "L"
-	if abs(vertical) < abs(horizontal):
-		if horizontal > 0:
-			facing = "D"
-		else:
-			facing = "U"
-	else:
-		if vertical < 0 && facing == "R":
-			facing = "L"
-		elif vertical > 0 && facing == "L":
-			facing = "R"
-		elif horizontal < 0 && facing == "U":
-			facing = "U"
-		elif horizontal > 0 && facing == "D":
-			facing = "D"
-	pass
 
 
 func decideAnimation(motion):
