@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/muzzle_04.png-1f560aeadddd2652d98969e8c888b3d7.stex"
+path="res://.import/muzzle_04.png-16c50e46c178d073077eaeed5979ed28.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/particles/muzzle_04.png"
-dest_files=[ "res://.import/muzzle_04.png-1f560aeadddd2652d98969e8c888b3d7.stex" ]
+source_file="res://assets/sprites/Particles/muzzle_04.png"
+dest_files=[ "res://.import/muzzle_04.png-16c50e46c178d073077eaeed5979ed28.stex" ]
 
 [params]
 

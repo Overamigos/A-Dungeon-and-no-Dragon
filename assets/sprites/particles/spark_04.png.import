@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/spark_04.png-42680732636e973a3d94e1fef55091a2.stex"
+path="res://.import/spark_04.png-96a6ce54ce2f07eca60aa65382d74700.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/particles/spark_04.png"
-dest_files=[ "res://.import/spark_04.png-42680732636e973a3d94e1fef55091a2.stex" ]
+source_file="res://assets/sprites/Particles/spark_04.png"
+dest_files=[ "res://.import/spark_04.png-96a6ce54ce2f07eca60aa65382d74700.stex" ]
 
 [params]
 

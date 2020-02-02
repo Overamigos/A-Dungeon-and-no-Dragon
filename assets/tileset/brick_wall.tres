@@ -1,9 +1,10 @@
 [gd_resource type="TileSet" load_steps=77 format=2]
 
-[ext_resource path="res://assets/sprites/template_obstacle/stone_brick_walls.png" type="Texture" id=1]
-[ext_resource path="res://assets/sprites/template_obstacle/stone_brick_walls_f01.png" type="Texture" id=2]
-[ext_resource path="res://assets/sprites/template_obstacle/stone_brick_walls_f02.png" type="Texture" id=3]
-[ext_resource path="res://assets/sprites/template_obstacle/stone_brick_walls_f03.png" type="Texture" id=4]
+[ext_resource path="res://assets/sprites/TemplateObstacle/stone_brick_walls.png" type="Texture" id=1]
+[ext_resource path="res://assets/sprites/TemplateObstacle/stone_brick_walls_f01.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/TemplateObstacle/stone_brick_walls_f02.png" type="Texture" id=3]
+[ext_resource path="res://assets/sprites/TemplateObstacle/stone_brick_walls_f03.png" type="Texture" id=4]
+
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
