@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/concept2.png-41f1f5766fd536131983a368e06fb476.stex"
+path="res://.import/concept2.png-c98aa710096fa685ad992fa54fa55dc2.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/enemies/concept2.png"
-dest_files=[ "res://.import/concept2.png-41f1f5766fd536131983a368e06fb476.stex" ]
+source_file="res://assets/sprites/Characters/Enemies/concept2.png"
+dest_files=[ "res://.import/concept2.png-c98aa710096fa685ad992fa54fa55dc2.stex" ]
 
 [params]
 

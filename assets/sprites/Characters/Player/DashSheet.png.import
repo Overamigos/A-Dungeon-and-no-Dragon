@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/DashSheet.png-359b40fddf7a6109aadc9ae5e011ec58.stex"
+path="res://.import/DashSheet.png-5114d5bcb0a97708d3f57fe68a48b57a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/DashSheet.png"
-dest_files=[ "res://.import/DashSheet.png-359b40fddf7a6109aadc9ae5e011ec58.stex" ]
+source_file="res://assets/sprites/Characters/Player/DashSheet.png"
+dest_files=[ "res://.import/DashSheet.png-5114d5bcb0a97708d3f57fe68a48b57a.stex" ]
 
 [params]
 

@@ -1,10 +1,9 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=23 format=2]
 
-[ext_resource path="res://assets/scripts/Player.gd" type="Script" id=1]
-[ext_resource path="res://assets/sprites/player/PlayerRunning-Sheet.png" type="Texture" id=2]
-[ext_resource path="res://assets/sprites/player/PlayerIdle4sides-Sheet.png" type="Texture" id=3]
-[ext_resource path="res://assets/sprites/DashSheet.png" type="Texture" id=4]
-[ext_resource path="res://assets/sprites/AttackSheet.png" type="Texture" id=5]
+[ext_resource path="res://assets/scripts/Characters/Player.gd" type="Script" id=1]
+[ext_resource path="res://assets/sprites/Characters/Player/PlayerRunning-Sheet.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/Characters/Player/PlayerIdle4sides.png" type="Texture" id=3]
+[ext_resource path="res://assets/sprites/Characters/Player/DashSheet.png" type="Texture" id=4]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Attack_D"
@@ -140,7 +139,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.7 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 6, 11 ]
+"values": [ 9, 17 ]
 }
 
 [sub_resource type="Animation" id=10]
@@ -156,7 +155,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.7 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 12, 17 ]
+"values": [ 18, 26 ]
 }
 
 [sub_resource type="Animation" id=11]
@@ -172,7 +171,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.7 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 18, 23 ]
+"values": [ 27, 35 ]
 }
 
 [sub_resource type="Animation" id=12]
@@ -188,7 +187,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.7 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 0, 5 ]
+"values": [ 0, 8 ]
 }
 
 [sub_resource type="Animation" id=13]
@@ -269,18 +268,15 @@ __meta__ = {
 }
 
 [node name="RunSprite" type="Sprite" parent="."]
-visible = false
 texture = ExtResource( 2 )
 vframes = 4
 hframes = 12
 frame = 28
 
 [node name="IdleSprite" type="Sprite" parent="."]
-visible = false
 texture = ExtResource( 3 )
-vframes = 8
-hframes = 6
-frame = 18
+vframes = 4
+hframes = 9
 
 [node name="DashSprite" type="Sprite" parent="."]
 texture = ExtResource( 4 )
@@ -288,8 +284,6 @@ vframes = 8
 frame = 5
 
 [node name="AttackSprite" type="Sprite" parent="."]
-visible = false
-texture = ExtResource( 5 )
 vframes = 8
 hframes = 8
 frame = 18

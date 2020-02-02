@@ -2,8 +2,8 @@
 
 [ext_resource path="res://assets/tileset/brick_wall.tres" type="TileSet" id=1]
 [ext_resource path="res://assets/scripts/TileMap.gd" type="Script" id=2]
-[ext_resource path="res://assets/scenes/Player.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/scripts/Timer.gd" type="Script" id=4]
+[ext_resource path="res://assets/scenes/Characters/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/scripts/Powers/Timer.gd" type="Script" id=4]
 
 [node name="World" type="Node2D"]
 

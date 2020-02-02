@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/concept2_attack.png-9dbd482dbc36f7c4582d364369fcebaa.stex"
+path="res://.import/concept2_attack.png-f1dfe3fed138370143f2057bb9cb2de9.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/enemies/concept2_attack.png"
-dest_files=[ "res://.import/concept2_attack.png-9dbd482dbc36f7c4582d364369fcebaa.stex" ]
+source_file="res://assets/sprites/Powers/concept2_attack.png"
+dest_files=[ "res://.import/concept2_attack.png-f1dfe3fed138370143f2057bb9cb2de9.stex" ]
 
 [params]
 
