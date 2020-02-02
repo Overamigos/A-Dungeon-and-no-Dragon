@@ -111,7 +111,7 @@ func run(delta):
 
 func attack():
 	if !$Weapon:
-		var sword = preload("res://assets/scenes/Weapon.tscn").instance()
+		var sword = preload("res://assets/scenes/Powers/Weapon.tscn").instance()
 		match facing:
 			'L':
 				sword.rotation_degrees = 0
@@ -188,7 +188,7 @@ func _on_Area2D_area_entered(area):
 
 func _on_DashGhostTimer_timeout():
 	if isDashing:
-		var thisGhost = preload("res://assets/scenes/DashGhost.tscn").instance()
+		var thisGhost = preload("res://assets/scenes/Powers/DashGhost.tscn").instance()
 		get_parent().add_child(thisGhost)
 		thisGhost.position = position
 		thisGhost.texture = $DashSprite.texture

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/template.png-2b76cab54fc1d3baba892ba922f885b1.stex"
+path="res://.import/concept.png-5f8754b681fe58639923dd0d63af24d8.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/template_obstacle/template.png"
-dest_files=[ "res://.import/template.png-2b76cab54fc1d3baba892ba922f885b1.stex" ]
+source_file="res://assets/sprites/Characters/Player/concept.png"
+dest_files=[ "res://.import/concept.png-5f8754b681fe58639923dd0d63af24d8.stex" ]
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/concept2_walk.png-ce25f1aff407638273e44bf3cb7ed2f6.stex"
+path="res://.import/PlayerRunning-Sheet.png-bb7134498501ccb017e07163f9516268.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/enemies/concept2_walk.png"
-dest_files=[ "res://.import/concept2_walk.png-ce25f1aff407638273e44bf3cb7ed2f6.stex" ]
+source_file="res://assets/sprites/Characters/Player/PlayerRunning-Sheet.png"
+dest_files=[ "res://.import/PlayerRunning-Sheet.png-bb7134498501ccb017e07163f9516268.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
