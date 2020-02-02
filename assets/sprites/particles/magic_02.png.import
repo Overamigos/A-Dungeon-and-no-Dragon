@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/magic_02.png-2032d787ea7ff48e44ffa1b059926a45.stex"
+path="res://.import/magic_02.png-031c91d8da4a3c92db33965daba1fb1f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/particles/magic_02.png"
-dest_files=[ "res://.import/magic_02.png-2032d787ea7ff48e44ffa1b059926a45.stex" ]
+source_file="res://assets/sprites/Particles/magic_02.png"
+dest_files=[ "res://.import/magic_02.png-031c91d8da4a3c92db33965daba1fb1f.stex" ]
 
 [params]
 

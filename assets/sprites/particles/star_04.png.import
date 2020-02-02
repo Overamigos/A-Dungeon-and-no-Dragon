@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/star_04.png-591f2fb4a38f4123b6af703495a2a3eb.stex"
+path="res://.import/star_04.png-c0781acbb816e41be7bfbf75e5556f1d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/particles/star_04.png"
-dest_files=[ "res://.import/star_04.png-591f2fb4a38f4123b6af703495a2a3eb.stex" ]
+source_file="res://assets/sprites/Particles/star_04.png"
+dest_files=[ "res://.import/star_04.png-c0781acbb816e41be7bfbf75e5556f1d.stex" ]
 
 [params]
 

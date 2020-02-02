@@ -60,7 +60,6 @@ func _on_Timer_timeout():
 "
 
 [node name="Particles2D" type="Particles2D"]
-position = Vector2( 346.646, 197.309 )
 emitting = false
 amount = 2
 lifetime = 0.25

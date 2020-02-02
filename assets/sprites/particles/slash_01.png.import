@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/slash_01.png-af069adc7bc1f67562205e05586653f6.stex"
+path="res://.import/slash_01.png-f650020ec2ce83378e7c1bf58f570a92.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/particles/slash_01.png"
-dest_files=[ "res://.import/slash_01.png-af069adc7bc1f67562205e05586653f6.stex" ]
+source_file="res://assets/sprites/Particles/slash_01.png"
+dest_files=[ "res://.import/slash_01.png-f650020ec2ce83378e7c1bf58f570a92.stex" ]
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/twirl_01.png-7b843c232bd6634bf5de89016ffaaf63.stex"
+path="res://.import/twirl_01.png-e8ab15cde0afbd10d6b4d45505583f82.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/particles/twirl_01.png"
-dest_files=[ "res://.import/twirl_01.png-7b843c232bd6634bf5de89016ffaaf63.stex" ]
+source_file="res://assets/sprites/Particles/twirl_01.png"
+dest_files=[ "res://.import/twirl_01.png-e8ab15cde0afbd10d6b4d45505583f82.stex" ]
 
 [params]
 

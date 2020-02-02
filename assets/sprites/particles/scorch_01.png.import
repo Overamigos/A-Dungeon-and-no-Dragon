@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/scorch_01.png-7aa528c57db10ddb172276a0208dc80c.stex"
+path="res://.import/scorch_01.png-6e836a9677c07672e9dec4ee7b7c6386.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/particles/scorch_01.png"
-dest_files=[ "res://.import/scorch_01.png-7aa528c57db10ddb172276a0208dc80c.stex" ]
+source_file="res://assets/sprites/Particles/scorch_01.png"
+dest_files=[ "res://.import/scorch_01.png-6e836a9677c07672e9dec4ee7b7c6386.stex" ]
 
 [params]
 
