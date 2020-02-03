@@ -1,9 +1,9 @@
 extends "res://assets/scripts/Characters/Character.gd"
 
-var dashingSpeed = 800; 			#Pixels/second
+var dashingSpeed = 600; 			#Pixels/second
 
 var dashMaxCD = 0.5;				#Seconds
-var dashingMaxDuration = 0.2;		#Seconds
+var dashingMaxDuration = 0.3;		#Seconds
 var dashCD = 0;						#Seconds
 var dashingDuration = 0;			#Seconds
 var dashingMotion = Vector2(0,0);	#Direction vector

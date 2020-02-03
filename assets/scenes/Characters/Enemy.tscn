@@ -1,14 +1,15 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://assets/scripts/Characters/Enemy.gd" type="Script" id=1]
-[ext_resource path="res://assets/sprites/Characters/Enemies/concept2.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/Characters/Enemies/concept2_walk.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/Characters/Enemies/concept2.png" type="Texture" id=3]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Idle_D"
 length = 1.2
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("IdleSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -25,7 +26,7 @@ resource_name = "Idle_L"
 length = 1.2
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("IdleSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -42,7 +43,7 @@ resource_name = "Idle_R"
 length = 1.2
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("IdleSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -59,7 +60,7 @@ resource_name = "Idle_U"
 length = 1.2
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("IdleSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -71,8 +72,76 @@ tracks/0/keys = {
 "values": [ 8, 15 ]
 }
 
-[sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 6.11265, 5.47268 )
+[sub_resource type="Animation" id=9]
+resource_name = "Run_D"
+length = 1.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("RunSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0, 6 ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "Run_L"
+length = 1.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("RunSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 18, 24 ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "Run_R"
+length = 1.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("RunSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 12, 18 ]
+}
+
+[sub_resource type="Animation" id=12]
+resource_name = "Run_U"
+length = 1.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("RunSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 6, 12 ]
+}
+
+[sub_resource type="CircleShape2D" id=8]
+radius = 5.7468
 
 [sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 7.95292, 14.3059 )
@@ -87,20 +156,36 @@ anims/Idle_D = SubResource( 1 )
 anims/Idle_L = SubResource( 2 )
 anims/Idle_R = SubResource( 3 )
 anims/Idle_U = SubResource( 4 )
+anims/Run_D = SubResource( 9 )
+anims/Run_L = SubResource( 10 )
+anims/Run_R = SubResource( 11 )
+anims/Run_U = SubResource( 12 )
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="RunSprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 vframes = 4
-hframes = 8
-frame = 1
+hframes = 6
+frame = 22
+
+[node name="IdleSprite" type="Sprite" parent="."]
+visible = false
+texture = ExtResource( 3 )
+vframes = 4
+hframes = 6
+frame = 23
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0.368057, 8.64923 )
-shape = SubResource( 5 )
+position = Vector2( 0.453315, 6.94408 )
+shape = SubResource( 8 )
 
 [node name="Area2D" type="Area2D" parent="."]
+visible = false
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2( 0.184021, 0.368053 )
 shape = SubResource( 6 )
+
+[node name="Line2D" type="Line2D" parent="."]
+width = 2.0
+texture_mode = 1048576000

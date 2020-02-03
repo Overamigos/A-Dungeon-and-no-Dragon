@@ -254,8 +254,8 @@ tracks/0/keys = {
 "values": [ 0, 11 ]
 }
 
-[sub_resource type="RectangleShape2D" id=17]
-extents = Vector2( 6.97446, 3.17252 )
+[sub_resource type="CircleShape2D" id=17]
+radius = 6.07799
 
 [sub_resource type="RectangleShape2D" id=18]
 extents = Vector2( 5.87692, 10.2489 )
@@ -279,6 +279,7 @@ vframes = 4
 hframes = 9
 
 [node name="DashSprite" type="Sprite" parent="."]
+visible = false
 texture = ExtResource( 4 )
 vframes = 8
 frame = 5
@@ -307,8 +308,7 @@ anims/Run_R = SubResource( 15 )
 anims/Run_U = SubResource( 16 )
 
 [node name="Feet" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2( 0.242349, 12.8063 )
+position = Vector2( -0.269198, 6.07094 )
 shape = SubResource( 17 )
 
 [node name="Hitbox" type="Area2D" parent="."]

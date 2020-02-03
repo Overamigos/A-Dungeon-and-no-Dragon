@@ -1,10 +1,9 @@
-[gd_resource type="TileSet" load_steps=77 format=2]
+[gd_resource type="TileSet" load_steps=80 format=2]
 
 [ext_resource path="res://assets/sprites/TemplateObstacle/stone_brick_walls.png" type="Texture" id=1]
 [ext_resource path="res://assets/sprites/TemplateObstacle/stone_brick_walls_f01.png" type="Texture" id=2]
 [ext_resource path="res://assets/sprites/TemplateObstacle/stone_brick_walls_f02.png" type="Texture" id=3]
 [ext_resource path="res://assets/sprites/TemplateObstacle/stone_brick_walls_f03.png" type="Texture" id=4]
-
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
@@ -213,15 +212,24 @@ points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
 [sub_resource type="ConvexPolygonShape2D" id=69]
 points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
 
-[sub_resource type="NavigationPolygon" id=70]
-vertices = PoolVector2Array( 0, 64, 0, 0, 64, 0, 64, 64 )
-polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+[sub_resource type="ConvexPolygonShape2D" id=70]
+points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
 
-[sub_resource type="NavigationPolygon" id=71]
+[sub_resource type="ConvexPolygonShape2D" id=71]
+points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
+
+[sub_resource type="ConvexPolygonShape2D" id=72]
+points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
+
+[sub_resource type="NavigationPolygon" id=73]
 vertices = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 
-[sub_resource type="NavigationPolygon" id=72]
+[sub_resource type="NavigationPolygon" id=74]
+vertices = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+
+[sub_resource type="NavigationPolygon" id=75]
 vertices = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 
@@ -657,6 +665,24 @@ polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 "one_way_margin": 1.0,
 "shape": SubResource( 69 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 9, 1 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 70 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 10, 1 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 71 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 10, 2 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 72 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 0/z_index = 0
 1/name = "stone_brick_walls_f01.png 1"
@@ -671,7 +697,7 @@ polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 1/autotile/tile_size = Vector2( 64, 64 )
 1/autotile/spacing = 0
 1/autotile/occluder_map = [  ]
-1/autotile/navpoly_map = [ Vector2( 0, 0 ), SubResource( 70 ) ]
+1/autotile/navpoly_map = [ Vector2( 0, 0 ), SubResource( 73 ) ]
 1/autotile/priority_map = [  ]
 1/autotile/z_index_map = [  ]
 1/occluder_offset = Vector2( 0, 0 )
@@ -690,7 +716,7 @@ polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 2/autotile/tile_size = Vector2( 64, 64 )
 2/autotile/spacing = 0
 2/autotile/occluder_map = [  ]
-2/autotile/navpoly_map = [ Vector2( 0, 0 ), SubResource( 71 ) ]
+2/autotile/navpoly_map = [ Vector2( 0, 0 ), SubResource( 74 ) ]
 2/autotile/priority_map = [  ]
 2/autotile/z_index_map = [  ]
 2/occluder_offset = Vector2( 0, 0 )
@@ -709,7 +735,7 @@ polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 3/autotile/tile_size = Vector2( 64, 64 )
 3/autotile/spacing = 0
 3/autotile/occluder_map = [  ]
-3/autotile/navpoly_map = [ Vector2( 0, 0 ), SubResource( 72 ) ]
+3/autotile/navpoly_map = [ Vector2( 0, 0 ), SubResource( 75 ) ]
 3/autotile/priority_map = [  ]
 3/autotile/z_index_map = [  ]
 3/occluder_offset = Vector2( 0, 0 )
