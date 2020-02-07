@@ -1,17 +1,17 @@
 extends "res://assets/scripts/Characters/Character.gd"
 
-var dashingSpeed = 600; 			#Pixels/second
+var dashingSpeed = 700; 			#Pixels/second
 
 var dashMaxCD = 0.5;				#Seconds
-var dashingMaxDuration = 0.3;		#Seconds
+var dashingMaxDuration = 0.25;		#Seconds
 var dashCD = 0;						#Seconds
 var dashingDuration = 0;			#Seconds
 var dashingMotion = Vector2(0,0);	#Direction vector
 var isDashing = false
 
 
-var attackMaxCD = 0.1;				#Seconds
-var attackCD = 0.1;					#Seconds
+var attackMaxCD = 0.5;				#Seconds
+var attackCD = attackMaxCD;					#Seconds
 var isAttacking = false
 
 ### UPDATE FUNCTION ###

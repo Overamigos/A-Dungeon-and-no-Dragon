@@ -9,15 +9,18 @@ enum STATE{
 }
 var currState
 
-var attackMaxCD = 1;
+var attackMaxCD = 0.75;
 var attackCD = attackMaxCD
+
+var initialAttackDelay = 0.25
+var attackDelay = initialAttackDelay
 
 func _ready():
 	currState = STATE.SEARCHING
 	maxHp = 3
 	hp = maxHp
-	baseSpeed = 50
-	MOTION_SPEED = 50
+	baseSpeed = 70
+	MOTION_SPEED = baseSpeed
 	pass # Replace with function body.
 
 
@@ -51,10 +54,13 @@ func _physics_process(delta):
 					attackCD = attackMaxCD
 				
 		STATE.ATTACKING:
-			if !has_node("Weapon"):
+			attackDelay -= delta
+			if !has_node("Weapon") && attackDelay <= 0:
 				var sword = preload("res://assets/scenes/Powers/Weapon.tscn").instance()
 				add_child(sword)
 				sword.get_node("Area2D").set_collision_mask_bit(2,false)
+				
+				#sword.scale = Vector2(0.6,0.6)
 				#currState = STATE.FOLLOWING
 			
 	
@@ -70,6 +76,7 @@ func handleCoolDowns(delta):
 
 func attackFinish():
 	currState = STATE.FOLLOWING
+	attackDelay = initialAttackDelay
 	
 func chooseDirection():
 	var enemy_position = get_global_position()
