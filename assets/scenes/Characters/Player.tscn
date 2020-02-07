@@ -1,9 +1,8 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://assets/scripts/Characters/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/Characters/Player/PlayerRunning-Sheet.png" type="Texture" id=2]
 [ext_resource path="res://assets/sprites/Characters/Player/PlayerIdle4sides.png" type="Texture" id=3]
-[ext_resource path="res://assets/sprites/Characters/Player/DashSheet.png" type="Texture" id=4]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Attack_D"
@@ -78,7 +77,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 4 ]
+"values": [ 20 ]
 }
 
 [sub_resource type="Animation" id=6]
@@ -93,7 +92,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 6 ]
+"values": [ 32 ]
 }
 
 [sub_resource type="Animation" id=7]
@@ -108,7 +107,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 2 ]
+"values": [ 44 ]
 }
 
 [sub_resource type="Animation" id=8]
@@ -123,7 +122,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 0 ]
+"values": [ 8 ]
 }
 
 [sub_resource type="Animation" id=9]
@@ -269,21 +268,23 @@ __meta__ = {
 }
 
 [node name="RunSprite" type="Sprite" parent="."]
+visible = false
 texture = ExtResource( 2 )
 vframes = 4
 hframes = 12
 frame = 28
 
 [node name="IdleSprite" type="Sprite" parent="."]
+visible = false
 texture = ExtResource( 3 )
 vframes = 4
 hframes = 9
 
 [node name="DashSprite" type="Sprite" parent="."]
-visible = false
-texture = ExtResource( 4 )
-vframes = 8
-frame = 5
+texture = ExtResource( 2 )
+vframes = 4
+hframes = 12
+frame = 21
 
 [node name="AttackSprite" type="Sprite" parent="."]
 vframes = 8
