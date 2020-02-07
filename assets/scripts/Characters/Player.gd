@@ -26,9 +26,9 @@ func _physics_process(delta):
 		if isAttacking:
 			attack()
 		if isRunning:
-			run(delta)
+			run()
 			
-	decideAnimation(motion);
+	decideAnimation();
 	handleCoolDowns(delta)
 	MOTION_SPEED = baseSpeed;
 	pass
@@ -60,7 +60,7 @@ func handleInputs():
 			Input.get_action_strength("move_bottom") - Input.get_action_strength("move_up")
 		);
 		if dashingMotion == Vector2(0,0):
-			decideAnimation(motion);
+			decideAnimation();
 			match(facing):
 				"D":
 					dashingMotion = Vector2(0,1);
@@ -96,16 +96,6 @@ func dash(delta):
 func attack():
 	if !$Weapon:
 		var sword = preload("res://assets/scenes/Powers/Weapon.tscn").instance()
-		match facing:
-			'L':
-				sword.rotation_degrees = 0
-			'R':
-				sword.rotation_degrees = 180
-			'U':
-				sword.rotation_degrees = 90
-			'D':
-				sword.rotation_degrees = 270
-		sword.position += Vector2(-25,0).rotated(sword.rotation)
 		add_child(sword)
 	pass
 
@@ -115,7 +105,7 @@ func handleCoolDowns(delta):
 	attackCD -= delta
 
 
-func decideAnimation(motion):
+func decideAnimation():
 	$RunSprite.visible = false
 	$IdleSprite.visible = false
 	$DashSprite.visible = false
@@ -132,14 +122,12 @@ func decideAnimation(motion):
 		$IdleSprite.visible = true
 	$AnimationPlayer.play(action+"_"+facing)
 	pass
+	
+
+func attackFinish():
+	isAttacking = false
 
 ##Signals
-
-func _on_Area2D_area_entered(area):
-	if(area.collision_mask == 2):
-		print('hit');
-		hp-=1;
-	pass # Replace with function body.
 
 
 func _on_DashGhostTimer_timeout():
@@ -160,7 +148,6 @@ func _on_DashSprite_frame_changed():
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):
-	print(anim_name)
 	if 'Attack' in anim_name:
 		isAttacking = false;
 	pass # Replace with function body.

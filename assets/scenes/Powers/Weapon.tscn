@@ -5,7 +5,6 @@
 
 [sub_resource type="Animation" id=1]
 resource_name = "attack"
-length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
@@ -13,7 +12,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
+"times": PoolRealArray( 0, 0.9 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ 0, 7 ]
@@ -30,10 +29,11 @@ playback_speed = 3.0
 anims/attack = SubResource( 1 )
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
-position = Vector2( -0.485966, 0.0809937 )
 build_mode = 1
-polygon = PoolVector2Array( 7.99547, -7.77936, -8.28448, -4.62057, -19.3808, 2.102, -6.74558, 8.50059, 13.0172, 8.66258, -5.28767, 1.29206, 8.40045, -6.80742 )
+polygon = PoolVector2Array( 14.9609, -11.5052, 6.53744, -7.29345, -3.4249, -3.56769, -9.17551, 1.049, -9.17551, 4.20779, -4.72081, 7.28559, 2.5687, 9.06746, 13.179, 10.2824, 18.2007, 10.0394, 20.0635, 11.2543, 16.4998, 11.9023, 7.50938, 11.4973, 0.543839, 12.0643, -4.23484, 12.2263, -10.1474, 10.8493, -16.222, 9.87741, -21.0817, 8.5815, -25.1315, 6.88061, -26.7513, 4.93674, -26.5084, 1.93994, -24.6455, -0.246914, -19.7048, -3.08173, -15.5741, -5.43057, -10.6334, -7.37444, -4.80181, -9.31831, -0.185112, -10.2902, 3.86462, -11.2622, 10.3442, -11.5052 )
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]

@@ -2,9 +2,19 @@ extends "res://assets/scripts/Characters/Character.gd"
 
 var target
 var points = []
+enum STATE{
+	SEARCHING,
+	FOLLOWING,
+	ATTACKING
+}
+var currState
+
+var attackMaxCD = 1;
+var attackCD = attackMaxCD
 
 func _ready():
-	maxHp = 1
+	currState = STATE.SEARCHING
+	maxHp = 3
 	hp = maxHp
 	baseSpeed = 50
 	MOTION_SPEED = 50
@@ -13,34 +23,80 @@ func _ready():
 
 func _physics_process(delta):
 	checkDeath()
-	if(get_node("../../../Player")):
+	var distance = null
+	
+	if has_node("../../../Player"):
 		target = get_node("../../../Player")
-		chooseDirection()
-		decideFacingDirection()
-		run(delta)
+		distance = (target.global_position - global_position).length()
+	else:
+		target = null
+		return
+	
+	match currState:
+		STATE.SEARCHING:
+			if distance <= 200:
+				currState = STATE.FOLLOWING
+				
+		STATE.FOLLOWING:
+			if(target):
+				chooseDirection()
+				run()
+			
+			if distance >= 500:
+				currState = STATE.SEARCHING
+				
+			elif distance <= 50:
+				if attackCD <= 0:
+					currState = STATE.ATTACKING
+					attackCD = attackMaxCD
+				
+		STATE.ATTACKING:
+			if !has_node("Weapon"):
+				var sword = preload("res://assets/scenes/Powers/Weapon.tscn").instance()
+				add_child(sword)
+				sword.get_node("Area2D").set_collision_mask_bit(2,false)
+				#currState = STATE.FOLLOWING
+			
+	
+	decideFacingDirection()
 	decideAnimation(motion)
+	handleCoolDowns(delta)
 	
 	pass
 
+func handleCoolDowns(delta):
+	if attackCD > 0:
+		attackCD -= delta
+
+func attackFinish():
+	currState = STATE.FOLLOWING
+	
 func chooseDirection():
 	var enemy_position = get_global_position()
 
 	points = get_node("../../../Navigation2D").get_simple_path(enemy_position, target.global_position, true)
-	$Line2D.points = points
-	$Line2D.global_position = Vector2(0,0)
-		
+	#$Line2D.points = points
+	#$Line2D.global_position = Vector2(0,0)
+	var overlaps = $Vision.get_overlapping_areas()
+	var avoid = Vector2(0,0)
+	for overlap in overlaps:
+		avoid -= global_position.direction_to(overlap.global_position)
+	
+	avoid*=2
+	
 	if points.size() > 1:
 		var distance = (points[1] - points[0]).length()
-		if distance > 2.0 :
-			motion = (points[1] - enemy_position).normalized()
-			isRunning = true
-		elif points.size() > 2:
-			motion = (points[2] - enemy_position).normalized()
-			isRunning = true
-		else:
-			isRunning = false
-			motion = Vector2(0,0)
-
+		points.remove(0)
+		if points.size() > 1 && distance < 20.0:
+			points.remove(0)
+			
+		#$Line2D.points = [points[0], enemy_position]
+		motion = (points[0] - enemy_position + avoid).normalized()
+		isRunning = true
+	else:
+		isRunning = false
+		motion = Vector2(0,0)
+	
 
 func decideAnimation(motion):
 	$RunSprite.visible = false

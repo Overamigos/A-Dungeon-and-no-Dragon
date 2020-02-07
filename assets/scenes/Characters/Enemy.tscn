@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://assets/scripts/Characters/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/Characters/Enemies/concept2_walk.png" type="Texture" id=2]
@@ -72,7 +72,7 @@ tracks/0/keys = {
 "values": [ 8, 15 ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=5]
 resource_name = "Run_D"
 length = 1.2
 loop = true
@@ -89,7 +89,7 @@ tracks/0/keys = {
 "values": [ 0, 6 ]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=6]
 resource_name = "Run_L"
 length = 1.2
 loop = true
@@ -106,7 +106,7 @@ tracks/0/keys = {
 "values": [ 18, 24 ]
 }
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=7]
 resource_name = "Run_R"
 length = 1.2
 loop = true
@@ -123,7 +123,7 @@ tracks/0/keys = {
 "values": [ 12, 18 ]
 }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=8]
 resource_name = "Run_U"
 length = 1.2
 loop = true
@@ -140,11 +140,14 @@ tracks/0/keys = {
 "values": [ 6, 12 ]
 }
 
-[sub_resource type="CircleShape2D" id=8]
+[sub_resource type="CircleShape2D" id=9]
 radius = 5.7468
 
-[sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 7.95292, 14.3059 )
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 3.76289, 13.4726 )
+
+[sub_resource type="CircleShape2D" id=11]
+radius = 72.211
 
 [node name="Enemy" type="KinematicBody2D"]
 collision_layer = 4
@@ -156,10 +159,10 @@ anims/Idle_D = SubResource( 1 )
 anims/Idle_L = SubResource( 2 )
 anims/Idle_R = SubResource( 3 )
 anims/Idle_U = SubResource( 4 )
-anims/Run_D = SubResource( 9 )
-anims/Run_L = SubResource( 10 )
-anims/Run_R = SubResource( 11 )
-anims/Run_U = SubResource( 12 )
+anims/Run_D = SubResource( 5 )
+anims/Run_L = SubResource( 6 )
+anims/Run_R = SubResource( 7 )
+anims/Run_U = SubResource( 8 )
 
 [node name="RunSprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
@@ -174,18 +177,25 @@ vframes = 4
 hframes = 6
 frame = 23
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Feet" type="CollisionShape2D" parent="."]
 position = Vector2( 0.453315, 6.94408 )
-shape = SubResource( 8 )
+shape = SubResource( 9 )
 
-[node name="Area2D" type="Area2D" parent="."]
-visible = false
-collision_mask = 2
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 7
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2( 0.184021, 0.368053 )
-shape = SubResource( 6 )
+shape = SubResource( 10 )
 
 [node name="Line2D" type="Line2D" parent="."]
 width = 2.0
 texture_mode = 1048576000
+
+[node name="Vision" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Vision"]
+shape = SubResource( 11 )

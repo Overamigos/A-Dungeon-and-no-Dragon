@@ -5,16 +5,19 @@ var motion = Vector2(0,0)			#Direcion player is moving
 var isRunning = false
 var isIdle = true
 
-var maxHp = 5;
+var maxHp = 10;
 var hp = maxHp;
 var facing = "D"					#Initial facing direction
 
 var baseSpeed = 200;				#Pixels/second
 var MOTION_SPEED = baseSpeed; 		# Pixels/second
 
-func run(delta):
+func run():
 	move_and_slide(motion * MOTION_SPEED);
-	pass
+	pass 
+
+func test_run(new_motion):
+	return test_move(transform, new_motion * MOTION_SPEED)
 
 func decideFacingDirection():
 	if $AnimationPlayer.is_playing():

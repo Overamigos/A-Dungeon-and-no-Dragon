@@ -260,11 +260,12 @@ radius = 6.07799
 [sub_resource type="RectangleShape2D" id=18]
 extents = Vector2( 5.87692, 10.2489 )
 
-[node name="player" type="KinematicBody2D"]
-collision_mask = 7
+[node name="Player" type="KinematicBody2D"]
+collision_layer = 2
+collision_mask = 5
 script = ExtResource( 1 )
 __meta__ = {
-"_edit_horizontal_guides_": [ -2.69101, -12.5744 ]
+"_edit_horizontal_guides_": [  ]
 }
 
 [node name="RunSprite" type="Sprite" parent="."]
@@ -313,6 +314,8 @@ shape = SubResource( 17 )
 
 [node name="Hitbox" type="Area2D" parent="."]
 visible = false
+collision_layer = 2
+collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 visible = false
@@ -322,6 +325,13 @@ shape = SubResource( 18 )
 [node name="DashGhostTimer" type="Timer" parent="."]
 wait_time = 0.01
 autostart = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+smoothing_enabled = true
+drag_margin_left = 0.1
+drag_margin_top = 0.1
+drag_margin_right = 0.1
+drag_margin_bottom = 0.1
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
-[connection signal="area_entered" from="Hitbox" to="." method="_on_Area2D_area_entered"]
 [connection signal="timeout" from="DashGhostTimer" to="." method="_on_DashGhostTimer_timeout"]
